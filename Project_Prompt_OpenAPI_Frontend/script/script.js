@@ -35,7 +35,6 @@ function submit() {
   ];
   button.addEventListener("click", async (event) => {
     event.preventDefault();
-    displayData("");
     const data = [];
     const bolean = Array.from(textareas).some((textarea) => {
       return textarea.value.trim() !== "";
@@ -68,7 +67,12 @@ function submit() {
         },
         body: JSON.stringify(obj),
       });
+      // Créez une promesse pour attendre la réponse
       const response = await fetchData.json();
+
+      // Attendez que la réponse soit prête
+      await response;
+
       if (response) {
         displayData(response.response);
       }
