@@ -79,3 +79,20 @@ input[type="submit"] {
   color: #fff;
   background: #cc1db9;
 }
+
+section#result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #cc1db99c;
+  border-radius: 15px;
+  height: 100%;
+  margin: 0 0 35px 0;
+  padding: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+  text-wrap: wrap;
+}
