@@ -1,4 +1,4 @@
-API_URL = "http://localhost:3000/api/open";
+API_URL = "https://openlogistique.com/prompt/api/open";
 
 submit();
 
