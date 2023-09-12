@@ -96,3 +96,15 @@ p {
   font-size: 1.2rem;
   text-wrap: wrap;
 }
+
+@media all and (max-width: 425px) {
+  form > div > div {
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0 0 25px 10px;
+  }
+  form > div {
+    justify-content: center;
+    align-items: center;
+  }
+}

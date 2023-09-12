@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config(); // Variables d'environement !!!
 const app = express();
 
@@ -16,6 +17,14 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+const corsOptions = {
+  origin: "*", // Remplacer par l'origine de votre application
+  optionsSuccessStatus: 200, // Certains navigateurs renvoient un code d'état 204, ce qui peut causer des problèmes, donc nous forçons un code 200 ici.
+};
+
+// Activer CORS pour toutes les routes
+app.use(cors(corsOptions));
 
 app.use(express.json());
 

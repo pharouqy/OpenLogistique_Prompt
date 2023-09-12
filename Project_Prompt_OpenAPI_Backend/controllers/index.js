@@ -2,6 +2,7 @@ const OpenAIApi = require("openai");
 const Configuration = require("openai"); // Correction : Utilisez { Configuration } pour éviter la confusion avec le module OpenAI
 
 exports.prompt = async (req, res, next) => {
+  console.log(req.body);
   // Configuration de l'API OpenAI
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
