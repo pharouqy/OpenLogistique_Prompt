@@ -18,6 +18,7 @@ function preparePrompt(array) {
 }
 
 function displayData(value) {
+  result.innerHTML = "";
   const p = document.createElement("p");
   p.textContent = value;
   result.appendChild(p);
@@ -58,6 +59,7 @@ function submit() {
     });
     if (!boolean) {
       alert("Remplissez Toutes Les Cases S'il Vous Plait !!!");
+      window.location.reload();
       return;
     }
     array.forEach((element) => {

@@ -35,6 +35,7 @@ main > div {
 main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 section form {
@@ -94,6 +95,7 @@ section#result {
   height: 100%;
   margin: 0 0 35px 0;
   padding: 10px;
+  width: 85%;
 }
 
 p {
