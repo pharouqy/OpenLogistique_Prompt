@@ -1,4 +1,6 @@
-API_URL = "https://openlogistique.com/prompt/api/open";
+API_URL = "http://localhost:3000/api/open";
+const result = document.getElementById("result");
+const button = document.getElementById("button");
 
 submit();
 
@@ -16,14 +18,28 @@ function preparePrompt(array) {
 }
 
 function displayData(value) {
-  const result = document.getElementById("result");
   const p = document.createElement("p");
   p.textContent = value;
   result.appendChild(p);
 }
 
+async function compteur(element, response) {
+  let compteur = 0;
+  function incrementerCompteur() {
+    compteur++;
+    element.innerHTML = compteur;
+  }
+  const dureeEnSecondes = 5;
+  const intervalId = setInterval(incrementerCompteur, 1000);
+  setTimeout(() => {
+    clearInterval(intervalId);
+    displayData(response.response);
+    button.disabled = false;
+  }, dureeEnSecondes * 1000);
+  return;
+}
+
 function submit() {
-  const button = document.getElementById("button");
   const textareas = document.querySelectorAll("textarea");
   const array = [
     "action",
@@ -35,11 +51,12 @@ function submit() {
   ];
   button.addEventListener("click", async (event) => {
     event.preventDefault();
+    button.disabled = true;
     const data = [];
-    const bolean = Array.from(textareas).some((textarea) => {
+    const boolean = Array.from(textareas).some((textarea) => {
       return textarea.value.trim() !== "";
     });
-    if (!bolean) {
+    if (!boolean) {
       alert("Remplissez Toutes Les Cases S'il Vous Plait !!!");
       return;
     }
@@ -70,13 +87,8 @@ function submit() {
       });
       // Créez une promesse pour attendre la réponse
       const response = await fetchData.json();
-
-      // Attendez que la réponse soit prête
       await response;
-
-      if (response) {
-        displayData(response.response);
-      }
+      compteur(result, response);
     } catch (error) {
       console.log(error);
     }

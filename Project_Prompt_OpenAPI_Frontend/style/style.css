@@ -80,6 +80,10 @@ input[type="submit"] {
   background: #cc1db9;
 }
 
+input:disabled {
+  filter: grayscale();
+}
+
 section#result {
   display: flex;
   flex-direction: column;
