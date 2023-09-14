@@ -2,7 +2,18 @@ const OpenAIApi = require("openai");
 const Configuration = require("openai"); // Correction : Utilisez { Configuration } pour éviter la confusion avec le module OpenAI
 
 exports.prompt = async (req, res, next) => {
-  console.log(req.body);
+  console.log(req.body.prompt);
+  const obj = {
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content: req.body.prompt,
+      },
+    ],
+    temperature: 0.5,
+    max_tokens: 1024,
+  };
   // Configuration de l'API OpenAI
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
@@ -11,7 +22,7 @@ exports.prompt = async (req, res, next) => {
   const openai = new OpenAIApi(configuration); // Correction : Utilisez "new OpenAIApi" pour initialiser l'API OpenAI
   try {
     // Génération de la réponse de l'assistant
-    const completion = await openai.chat.completions.create(req.body);
+    const completion = await openai.chat.completions.create(obj);
     const completion_text = completion.choices[0].message.content;
     // Envoi de la réponse au frontend avec un statut 200
     res.status(200).json({ response: completion_text });

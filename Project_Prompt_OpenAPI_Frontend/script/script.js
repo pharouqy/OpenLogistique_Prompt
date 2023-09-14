@@ -12,7 +12,7 @@ function promptData(id) {
 function preparePrompt(array) {
   let result = "";
   array.forEach((element) => {
-    result += element + "\n";
+    result += element.trim() + "\n";
   });
   return result;
 }
@@ -66,17 +66,9 @@ function submit() {
       promptData(element);
       data.push(promptData(element));
     });
-    const finalData = preparePrompt(data);
-    const obj = {
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: finalData,
-        },
-      ],
-      temperature: 0.5,
-      max_tokens: 1024,
+    const finalData = preparePrompt(data).trim();
+    const sendData = {
+      prompt: finalData,
     };
     try {
       const fetchData = await fetch(API_URL, {
@@ -85,12 +77,19 @@ function submit() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(obj),
+        body: JSON.stringify(sendData),
       });
-      // Créez une promesse pour attendre la réponse
-      const response = await fetchData.json();
-      await response;
-      compteur(result, response);
+      if (fetchData.status === 429) {
+        // Gérer ici l'erreur de limite de taux (status 429)
+        result.innerHTML =
+          "Limite de taux atteinte. Veuillez réessayer dans 30 minutes.";
+        return;
+      }
+      if (fetchData.ok) {
+        const response = await fetchData.json();
+        await response;
+        compteur(result, response);
+      }
     } catch (error) {
       console.log(error);
     }
