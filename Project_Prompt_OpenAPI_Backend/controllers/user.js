@@ -44,3 +44,7 @@ exports.register = (req, res, next) => {
       .catch((error) => res.status(400).json({ error }));
   });
 };
+
+exports.logout = (req, res, next) => {
+  res.status(200).json({ message: "Déconnexion réussie" });
+};

@@ -114,6 +114,11 @@ form + div {
   text-align: center;
 }
 
+header {
+  width: 100%;
+  text-align: end;
+}
+
 @media all and (max-width: 425px) {
   form > div > div {
     justify-content: space-evenly;
