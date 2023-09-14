@@ -1,8 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config(); // Variables d'environement !!!
+const helmet = require("helmet");
+require("./db/connexion")
+
 const app = express();
 
+const userRoute = require("./routes/user");
 const reqRoute = require("./routes/index");
 
 app.use((req, res, next) => {
@@ -26,8 +30,12 @@ const corsOptions = {
 // Activer CORS pour toutes les routes
 app.use(cors(corsOptions));
 
+// En désactivant cette option avec la valeur false, nous permettons aux ressources d'être chargées à partir de différents domaines et origines.
+app.use(helmet({ crossOriginResourcePolicy: false }));
+
 app.use(express.json());
 
 app.use("/api", reqRoute);
+app.use("/auth", userRoute);
 
 module.exports = app;
