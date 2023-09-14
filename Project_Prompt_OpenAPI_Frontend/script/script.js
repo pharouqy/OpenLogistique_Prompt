@@ -1,8 +1,11 @@
-API_URL = "http://localhost:3000/api/open";
+const token = JSON.parse(localStorage.getItem("token"));
+
+const API_URL = "http://localhost:3000";
 const result = document.getElementById("result");
 const button = document.getElementById("button");
 
 submit();
+logout();
 
 function promptData(id) {
   const textarea = document.getElementById(id).value;
@@ -71,11 +74,12 @@ function submit() {
       prompt: finalData,
     };
     try {
-      const fetchData = await fetch(API_URL, {
+      const fetchData = await fetch(`${API_URL}/api/open`, {
         //mode: "no-cors",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
         },
         body: JSON.stringify(sendData),
       });
@@ -93,5 +97,24 @@ function submit() {
     } catch (error) {
       console.log(error);
     }
+  });
+}
+
+function logout() {
+  const logout = document.getElementById("logout");
+  logout.addEventListener("click", (e) => {
+    e.preventDefault();
+    fetch(`${API_URL}/auth/logout`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        localStorage.removeItem("token");
+        window.location.href = "./index.html";
+      }
+    });
   });
 }

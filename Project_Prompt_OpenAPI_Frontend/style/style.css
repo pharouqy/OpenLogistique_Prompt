@@ -17,7 +17,8 @@ img {
   width: 150px;
 }
 
-form > div {
+form > div,
+#register > div:nth-child(6) > div:nth-child(1) {
   display: flex;
   flex-wrap: wrap;
   margin: 0 0 50px 0;
@@ -104,12 +105,14 @@ p {
 }
 
 #register > div,
-#login > div {
+#login > div,
+#register > div:nth-child(6) > div:nth-child(1) {
   margin: 0px 0 15px 0;
   align-items: center;
   justify-content: space-between;
 }
 
+form + div + div,
 form + div {
   text-align: center;
 }
@@ -117,6 +120,17 @@ form + div {
 header {
   width: 100%;
   text-align: end;
+}
+
+#register > div:nth-child(6) {
+  display: flex;
+  flex-direction: column;
+}
+
+#register > div:nth-child(6) > div:nth-child(2) > span,
+#errors {
+  color: #999;
+  font-size: 0.8rem;
 }
 
 @media all and (max-width: 425px) {
