@@ -103,6 +103,17 @@ p {
   text-wrap: wrap;
 }
 
+#register > div,
+#login > div {
+  margin: 0px 0 15px 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+form + div {
+  text-align: center;
+}
+
 @media all and (max-width: 425px) {
   form > div > div {
     justify-content: space-evenly;

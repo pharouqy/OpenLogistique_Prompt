@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenAi</title>
+    <title>Register</title>
     <link rel="stylesheet" href="./assets/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,76 +17,35 @@
     <main>
       <div><img src="./assets/Farouky_School.png" alt="Farouky_School" /></div>
       <section>
-        <form action="">
+        <form action="" id="register">
           <div>
-            <div>
-              <label for="identite">Identité :</label>
-              <textarea
-                name="identite"
-                id="identite"
-                cols="30"
-                rows="10"
-                placeholder="Agis comme un directeur marketing"
-              ></textarea>
-            </div>
-            <div>
-              <label for="action">Action :</label>
-              <textarea
-                name="action"
-                id="action"
-                cols="30"
-                rows="10"
-                placeholder="Identifier 3 personas qui ont le plus de chance d'acheter notre produit"
-              ></textarea>
-            </div>
-            <div>
-              <label for="context">Contexte :</label>
-              <textarea
-                name="context"
-                id="context"
-                cols="30"
-                rows="10"
-                placeholder="Le produit est une formation en ligne intitulé maitriser chatgpt pour aider les entrepreneurs à crée les meilleurs prompts chatgpt"
-              ></textarea>
-            </div>
+            <label for="firstname">Prénom :</label>
+            <input type="text" name="firstname" id="firstname" />
           </div>
           <div>
-            <div>
-              <label for="tonalite">Tonalite :</label>
-              <textarea
-                name="tonalite"
-                id="tonalite"
-                cols="30"
-                rows="10"
-                placeholder="Utilise un style proffesionel"
-              ></textarea>
-            </div>
-            <div>
-              <label for="format">Format :</label>
-              <textarea
-                name="format"
-                id="format"
-                cols="30"
-                rows="10"
-                placeholder="Pour chaque personas indique les élément suivants : age, intéret, indicateurs démographique, valeurs, besoins, scénario d'utilisation, citation typique"
-              ></textarea>
-            </div>
-            <div>
-              <label for="etapes">Etapes :</label>
-              <textarea
-                name="etapes"
-                id="etapes"
-                cols="30"
-                rows="10"
-                placeholder="Etape 1: utilise des phrases simples et concises. Etape 2: illustre les résultat dans un tableau"
-              ></textarea>
-            </div>
+            <label for="lastname">Nom :</label>
+            <input type="text" name="lastname" id="lastname" />
           </div>
-          <div><input type="submit" value="Envoyer" id="button" /></div>
+          <div>
+            <label for="birthDate">Date de naissance :</label>
+            <input type="date" name="birthDate" id="birthDate" />
+          </div>
+          <div>
+            <label for="ocupation">Fonction :</label>
+            <input type="text" name="ocupation" id="ocupation" />
+          </div>
+          <div>
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email" />
+          </div>
+          <div>
+            <label for="password">Mot de passe :</label>
+            <input type="password" name="password" id="password" />
+          </div>
+          <div><input type="submit" value="S'inscrire" id="button" /></div>
         </form>
+        <div><a href="login.html">login</a></div>
       </section>
-      <section id="result"></section>
     </main>
-    <script src="./script/script.js"></script>
   </body>
 </html>
