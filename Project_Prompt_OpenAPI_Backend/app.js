@@ -1,8 +1,9 @@
+const http = require("http");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config(); // Variables d'environement !!!
 const helmet = require("helmet");
-require("./db/connexion")
+require("./db/connexion");
 
 const app = express();
 
@@ -38,4 +39,10 @@ app.use(express.json());
 app.use("/api", reqRoute);
 app.use("/auth", userRoute);
 
-module.exports = app;
+const server = http.createServer(app);
+
+server.on("listening", () => {
+  console.log("listening on 4000");
+});
+
+server.listen(4000);
