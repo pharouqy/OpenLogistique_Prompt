@@ -38,6 +38,12 @@ main {
   flex-direction: column;
   align-items: center;
 }
+main > section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 section form {
   display: flex;
@@ -45,7 +51,7 @@ section form {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 300px;
 }
 
 form > div > div {
@@ -104,10 +110,21 @@ p {
   text-wrap: wrap;
 }
 
+form.app {
+  width: 100%;
+}
+
 #register > div,
-#login > div,
+#login > div {
+  margin: 0px 0 15px 0;
+  width: 320px;
+  align-items: center;
+  justify-content: space-between;
+}
+
 #register > div:nth-child(6) > div:nth-child(1) {
   margin: 0px 0 15px 0;
+  width: 95%;
   align-items: center;
   justify-content: space-between;
 }
@@ -122,12 +139,7 @@ header {
   text-align: end;
 }
 
-#register > div:nth-child(6) {
-  display: flex;
-  flex-direction: column;
-}
-
-#register > div:nth-child(6) > div:nth-child(2) > span,
+#register > div > span,
 #errors {
   color: #999;
   font-size: 0.8rem;
@@ -136,7 +148,7 @@ header {
 @media all and (max-width: 425px) {
   form > div > div {
     justify-content: space-evenly;
-    width: 100%;
+    width: 320px;
     margin: 0 0 25px 10px;
   }
   form > div {

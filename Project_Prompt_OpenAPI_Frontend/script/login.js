@@ -12,12 +12,42 @@ function fetchData() {
   button.addEventListener("click", (e) => {
     e.preventDefault();
     errors.innerHTML = "";
-    if (email.value != "" && password.value != "") {
+    if (emailCheck(email) && passwordCheck(password)) {
       loginSession();
     } else {
-      errors.innerHTML = "Remplissez tous les champs s'il vous plait !";
+      emailCheck(email);
+      passwordCheck(password);
     }
   });
+}
+
+function emailCheck(email) {
+  if (
+    email.value.trim() === "" ||
+    !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email.value.trim())
+  ) {
+    email.style.border = "3px red solid";
+    return false;
+  } else {
+    email.style.border = "3px green solid";
+    return true;
+  }
+}
+
+function passwordCheck(password) {
+  if (
+    password.value.trim() === "" ||
+    password.value.trim().length < 8 ||
+    !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!])([A-Za-z\d@#$%^&+=!]){8,}$/.test(
+      password.value.trim()
+    )
+  ) {
+    password.style.border = "3px red solid";
+    return false;
+  } else {
+    password.style.border = "3px green solid";
+    return true;
+  }
 }
 
 function loginSession() {
@@ -33,9 +63,14 @@ function loginSession() {
   })
     .then(async (response) => {
       if (!response.ok) {
-        const errorData = await response.json();
-        errors.innerHTML = errorData.message;
-        return;
+        if (response.status === 429) {
+          errors.innerHTML =
+            "Limite de taux atteinte. Veuillez réessayer dans 30 minutes.";
+        } else {
+          const errorData = await response.json();
+          errors.innerHTML = errorData.message;
+          return;
+        }
       }
       return response.json();
     })
