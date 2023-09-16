@@ -42,7 +42,7 @@ app.use("/auth", userRoute);
 const server = http.createServer(app);
 
 server.on("listening", () => {
-  console.log("listening on 4000");
+  console.log(`listening on ${process.env.PORT}`);
 });
 
-server.listen(4000);
+server.listen(process.env.PORT);
