@@ -31,11 +31,7 @@ exports.register = (req, res, next) => {
   console.log(req.body);
   bcrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      birthDate: req.body.birthDate,
-      ocupation: req.body.ocupation,
-      email: req.body.email,
+      ...req.body,
       password: hash,
     });
     user
